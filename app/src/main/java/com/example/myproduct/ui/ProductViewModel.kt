@@ -81,7 +81,7 @@ class ProductViewModel(private val productRepository: ProductRepository) : ViewM
     fun updateProductFilterList() {
         if (productList.value?.data != null) {
             val currentSet = HashSet<String>()
-            currentSet.add(R.string.all_products.toString())
+            currentSet.add("All Products")
             for (i in productList.value?.data!!) {
                 currentSet.add(i.product_type)
             }
@@ -91,8 +91,7 @@ class ProductViewModel(private val productRepository: ProductRepository) : ViewM
 
     fun handleFilter(productType: String) {
         val filteredList = java.util.ArrayList<ProductResponseItem>()
-        if (productType.equals(R.string.all_products.toString()
-                , true))
+        if (productType.equals("All Products", true))
             userFilterList.postValue(productList.value?.data as ArrayList<ProductResponseItem>)
         else {
             for (i in productList.value?.data as ArrayList<ProductResponseItem>) {
